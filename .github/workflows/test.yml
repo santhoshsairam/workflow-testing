@@ -1,13 +1,22 @@
-name : .net build
+name: .net build
+
 on: push
+
 jobs:
-	build: 
-		runs-on: ubuntu-latest
-		steps:
-			- name: Pull github code
-			- uses: actions/checkout@v6
-			- uses: actions/setup-node@v4
-				with:
-				node-version: '14'
-			- run: npm install -g bats
-			- run: bats -v
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull github code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
+
+      - name: Install Bats
+        run: npm install -g bats
+
+      - name: Check Bats Version
+        run: bats -v
